@@ -6,7 +6,7 @@ import Appstack from './navigation/Appstack';
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={Appstack}>
       <Appstack/>
     </NavigationContainer>
 

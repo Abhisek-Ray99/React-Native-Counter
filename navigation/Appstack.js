@@ -1,44 +1,27 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 import Home from '../screens/Home';
 import ColorPalette from '../screens/ColorPalette';
 import Counter from '../components/Counter';
 import Quote from '../components/Quote';
+import Form from '../screens/Form';
+import SubmitForm from '../screens/SubmitForm';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const Header = ({ navigation }) => {
-    return (
-        <View
-            style={{
-                marginRight: 10
-            }}
-        >
-            <TouchableOpacity
-                style={styles.touchbutton}
-                onPress={() => navigation.navigate('Quote')}
-            >
-                <Text style={styles.cTitle}>Counter Screen</Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
-
-const Appstack = () => {
-
+const HomeTab = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
                 name="Home"
                 component={Home}
-                options={{
-                    headerRight: () => (
-                        <Header/>
-                    ),
-                }}
             />
             <Stack.Screen
                 name="ColorPalette"
@@ -58,24 +41,74 @@ const Appstack = () => {
     )
 }
 
-const styles = StyleSheet.create({
-    counterScreen: {
-        flex: 1,
-        backgroundColor: '#fff'
-    },
-    touchbutton: {
-        backgroundColor: '#F5E9DB',
-        padding: 10,
-        borderRadius: 14,
-    },
-    cTitle: {
-        textAlign: 'center',
-        color: '#FFA764',
-        fontSize: 20,
-        fontWeight: 'bold'
-    }
+const FormTab = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Form Screen"
+                component={Form}
+            />
+            <Stack.Screen
+                name="Submit Form"
+                component={SubmitForm}
+            />
+        </Stack.Navigator>
+    )
+}
 
-})
+
+const Appstack = () => {
+    return (
+        <Tab.Navigator
+            tabBarOptions={{
+                activeTintColor: '#e91e63',
+                tabStyle: {
+                    // paddingVertical: 3
+                },
+                style: {
+                    // backgroundColor: 'transparent',
+                },
+                labelStyle: {
+                    // fontSize: 15
+                },
+                tabStyle: {
+                    height: 44,
+                },
+            }}
+        >
+            <Tab.Screen
+                name="Home"
+                component={HomeTab}
+                options={({ route }) => ({
+                    tabBarLabel: 'Home',
+                    tabBarIcon: ({ color, size }) => (
+                        <AntDesign
+                            name="home"
+                            color={color}
+                            size={size}
+                        />
+                    ),
+                })}
+            />
+            <Tab.Screen
+                name="Form"
+                component={FormTab}
+                options={({ route }) => ({
+                    tabBarLabel: 'Form',
+                    tabBarIcon: ({ color, size }) => (
+                        <AntDesign
+                            name="wechat"
+                            color={color}
+                            size={size}
+                        />
+                    ),
+
+                })}
+
+            />
+        </Tab.Navigator>
+    );
+}
 
 
 export default Appstack;

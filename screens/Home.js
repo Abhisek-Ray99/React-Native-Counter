@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useLayoutEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native'
 
 import PalettePreview from '../components/PalettePreview';
@@ -61,11 +61,30 @@ const Home = ({ navigation }) => {
         handleFetchPalettes();
     }, []);
 
-    const handleRefresh = useCallback( async() => {
+    const handleRefresh = useCallback(async () => {
         setIsrefreshing(true);
         await handleFetchPalettes();
         setIsrefreshing(false);
     }, []);
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <View
+                    style={{
+                        marginRight: 10
+                    }}
+                >
+                    <TouchableOpacity
+                        style={styles.touchbutton}
+                        onPress={() => navigation.navigate('Counter')}
+                    >
+                        <Text style={styles.cTitle}>Counter Screen</Text>
+                    </TouchableOpacity>
+                </View>
+            ),
+        });
+    }, [navigation])
 
 
     return (
@@ -87,7 +106,6 @@ const Home = ({ navigation }) => {
             )}
             refreshing={isrefreshing}
             onRefresh={handleRefresh}
-            
         />
     )
 }
@@ -98,5 +116,16 @@ const styles = StyleSheet.create({
     list: {
         padding: 10,
         backgroundColor: '#fff',
+    },
+    touchbutton: {
+        backgroundColor: '#F5E9DB',
+        padding: 10,
+        borderRadius: 14,
+    },
+    cTitle: {
+        textAlign: 'center',
+        color: '#FFA764',
+        fontSize: 20,
+        fontWeight: 'bold'
     }
 })
