@@ -13,48 +13,62 @@ import Quote from '../components/Quote';
 import Form from '../screens/Form';
 import SubmitForm from '../screens/SubmitForm';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
+const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeTab = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen
+        <MainStack.Navigator>
+            <MainStack.Screen
                 name="Home"
                 component={Home}
             />
-            <Stack.Screen
+            <MainStack.Screen
                 name="ColorPalette"
                 component={ColorPalette}
                 options={({ route }) => ({ title: route.params.paletteName })}
             />
-            <Stack.Screen
+            <MainStack.Screen
                 name="Counter"
                 component={Counter}
             />
-            <Stack.Screen
+            <MainStack.Screen
                 name="Quote"
                 component={Quote}
             />
-        </Stack.Navigator>
+        </MainStack.Navigator>
 
     )
 }
 
 const FormTab = () => {
     return (
-        <Stack.Navigator>
-            <Stack.Screen
+        <MainStack.Navigator>
+            <MainStack.Screen
                 name="Form Screen"
                 component={Form}
             />
-            <Stack.Screen
+            <MainStack.Screen
                 name="Submit Form"
                 component={SubmitForm}
             />
-        </Stack.Navigator>
+        </MainStack.Navigator>
     )
 }
+
+
+const App = () => {
+    return (
+        <RootStack.Navigator mode="modal">
+            <RootStack.Screen
+                name="Main"
+                component={HomeTab}
+                options={{ headerShown: false }}
+            />
+        </RootStack.Navigator>
+    );
+};
 
 
 const Appstack = () => {
@@ -78,7 +92,7 @@ const Appstack = () => {
         >
             <Tab.Screen
                 name="Home"
-                component={HomeTab}
+                component={App}
                 options={({ route }) => ({
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, size }) => (

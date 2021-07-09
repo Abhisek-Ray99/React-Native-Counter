@@ -9,8 +9,9 @@ const Form = ({navigation}) => {
                 <AwesomeButton
                 backgroundColor="#fffc6c"
                 activityColor="#6c6a00"
-                backgroundShadow="#b9b500"
+                backgroundShadow="#000"
                 backgroundActive="#fffb3e"
+                backgroundDarker="#b9b500"
                 borderRadius={7}
                 width={200}
                 onPress={() => {navigation.navigate('Submit Form')}}

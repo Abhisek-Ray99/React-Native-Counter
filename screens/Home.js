@@ -106,6 +106,13 @@ const Home = ({ navigation }) => {
             )}
             refreshing={isrefreshing}
             onRefresh={handleRefresh}
+            ListHeaderComponent={
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('AddNewPalette')}
+                >
+                    <Text>Open new ColorPalette Modal</Text>
+                </TouchableOpacity>
+            }
         />
     )
 }
