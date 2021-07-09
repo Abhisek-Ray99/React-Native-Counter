@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { StyleSheet, Text, ScrollView, View, Modal, Button, TextInput, TouchableOpacity } from 'react-native';
 import AwesomeButton from "react-native-really-awesome-button";
 import Icon from 'react-native-vector-icons/AntDesign';
 import { Picker } from '@react-native-picker/picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+// import OtpInputs from 'react-native-otp-inputs';
 
 
 const SubmitForm = () => {
@@ -46,6 +47,7 @@ const SubmitForm = () => {
                     </AwesomeButton>
                 </View>
                 <Text style={styles.sHeader}>Create a Account</Text>
+
             </Modal>
             <KeyboardAwareScrollView
 
